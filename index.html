@@ -141,30 +141,6 @@ body.team-mode .toggle.on::after { background: var(--team-accent); }
 body.team-mode .stat-n { color: var(--team-accent); }
 .stat-l { font-size: 10px; color: var(--text-muted); margin-top: 2px; text-transform: uppercase; letter-spacing: .07em; }
 
-/* BULK BAR */
-.bulk-bar {
-  display: none;
-  align-items: center; justify-content: space-between;
-  background: var(--bg-card);
-  border: 1px solid var(--accent-2);
-  border-radius: 10px; padding: 12px 18px; margin-bottom: 18px; gap: 12px;
-}
-body.team-mode .bulk-bar { border-color: var(--team-accent); }
-.bulk-bar.visible { display: flex; }
-.bulk-info { font-size: 13px; color: var(--text-strong); line-height: 1.4; }
-.bulk-info .team-name { color: var(--accent); font-weight: 600; }
-.bulk-info .count { font-family: 'JetBrains Mono', monospace; color: var(--accent); }
-body.team-mode .bulk-info .team-name,
-body.team-mode .bulk-info .count { color: var(--team-accent); }
-.bulk-btn {
-  background: var(--accent); color: #0a1a0d; border: none; border-radius: 6px;
-  padding: 9px 16px; font-size: 12px; font-weight: 600; cursor: pointer;
-  white-space: nowrap; letter-spacing: .04em; flex-shrink: 0;
-  transition: opacity .15s, transform .1s, background .3s;
-}
-body.team-mode .bulk-btn { background: var(--team-accent); color: #ffffff; }
-.bulk-btn:hover { opacity: .9; }
-.bulk-btn:active { transform: scale(.97); }
 
 /* DATE GROUP */
 .date-hdr {
@@ -181,7 +157,7 @@ body.team-mode .date-hdr { color: var(--text-muted); }
   margin-bottom: 7px;
   display: grid; grid-template-columns: 1fr auto;
   gap: 6px 14px; align-items: center;
-  position: relative; overflow: visible;
+  position: relative; overflow: hidden;
   transition: border-color .18s, background .4s, opacity .3s;
 }
 .mcard:hover { border-color: var(--accent-2); }
@@ -251,10 +227,7 @@ body.team-mode .completed-pill {
 }
 
 /* calendar button */
-.cal-wrap {
-  position: relative;
-  z-index: 50;
-}
+.cal-wrap { position: relative; }
 .cal-btn {
   background: var(--line); border: 1px solid var(--border); border-radius: 6px;
   width: 36px; height: 36px; display: flex; align-items: center; justify-content: center;
@@ -265,23 +238,6 @@ body.team-mode .completed-pill {
 .cal-btn:hover { border-color: var(--accent); background: #1a3d1f; }
 body.team-mode .cal-btn:hover { border-color: var(--team-accent); background: #f5f5ef; }
 
-/* calendar dropdown */
-.cal-drop {
-  display: none; position: absolute; right: 0; top: calc(100% + 6px);
-  background: var(--bg-card); border: 1px solid var(--accent-2); border-radius: 8px;
-  overflow: hidden; z-index: 9999; min-width: 170px;
-  box-shadow: 0 8px 24px rgba(0,0,0,.3);
-}
-body.team-mode .cal-drop { border-color: var(--team-accent); box-shadow: 0 8px 24px rgba(0,0,0,.12); }
-.cal-drop.open { display: block; }
-.cal-opt {
-  display: flex; align-items: center; gap: 8px;
-  padding: 10px 14px; font-size: 12px; color: var(--text);
-  cursor: pointer; text-decoration: none; border-bottom: 1px solid var(--border);
-  transition: background .12s;
-}
-.cal-opt:last-child { border-bottom: none; }
-.cal-opt:hover { background: var(--line); }
 
 /* empty state */
 .empty { text-align: center; padding: 60px 20px; color: var(--text-muted); font-size: 14px; }
@@ -297,57 +253,6 @@ body.team-mode .cal-drop { border-color: var(--team-accent); box-shadow: 0 8px 2
 body.team-mode .toast { background: var(--team-accent); color: #ffffff; }
 .toast.show { transform: translateX(-50%) translateY(0); }
 
-/* MODAL */
-.modal-bg {
-  display: none; position: fixed; inset: 0;
-  background: rgba(0,0,0,.7); z-index: 1000;
-  align-items: center; justify-content: center;
-  padding: 20px;
-}
-.modal-bg.open { display: flex; }
-.modal {
-  background: var(--bg-card); border: 1px solid var(--accent-2);
-  border-radius: 14px; padding: 28px 26px; max-width: 420px; width: 100%;
-  position: relative;
-}
-body.team-mode .modal { border-color: var(--team-accent); }
-.modal-title {
-  font-family: 'Bebas Neue', sans-serif; font-size: 26px;
-  color: var(--accent); margin-bottom: 6px; letter-spacing: .02em;
-}
-body.team-mode .modal-title { color: var(--team-accent); }
-.modal-sub { font-size: 13px; color: var(--text-strong); margin-bottom: 18px; line-height: 1.5; }
-.modal-sub .hl { color: var(--accent); font-weight: 600; }
-body.team-mode .modal-sub .hl { color: var(--team-accent); }
-.steps { display: flex; flex-direction: column; gap: 10px; margin-bottom: 22px; }
-.step { display: flex; gap: 10px; font-size: 12px; color: var(--text-strong); line-height: 1.5; }
-.step-num {
-  background: var(--accent); color: #0a1a0d;
-  width: 22px; height: 22px; border-radius: 50%;
-  display: flex; align-items: center; justify-content: center;
-  font-family: 'JetBrains Mono', monospace; font-size: 11px; font-weight: 700;
-  flex-shrink: 0;
-}
-body.team-mode .step-num { background: var(--team-accent); color: #ffffff; }
-.step-text strong { color: var(--accent); }
-body.team-mode .step-text strong { color: var(--team-accent); }
-.modal-actions { display: flex; gap: 8px; }
-.modal-btn {
-  flex: 1; background: var(--accent); color: #0a1a0d;
-  border: none; border-radius: 6px; padding: 11px;
-  font-size: 13px; font-weight: 600; cursor: pointer;
-  transition: opacity .15s;
-}
-body.team-mode .modal-btn { background: var(--team-accent); color: #ffffff; }
-.modal-btn:hover { opacity: .9; }
-.modal-btn.secondary { background: transparent; color: var(--text-muted); border: 1px solid var(--border); }
-body.team-mode .modal-btn.secondary { color: var(--text-muted); }
-.modal-close {
-  position: absolute; top: 12px; right: 14px;
-  background: none; border: none; color: var(--text-muted);
-  font-size: 22px; cursor: pointer; line-height: 1;
-}
-.modal-close:hover { color: var(--text-strong); }
 
 footer {
   border-top: 1px solid var(--border); margin-top: 40px; padding-top: 20px;
@@ -370,7 +275,7 @@ body.team-mode footer a { color: var(--team-accent); }
 <header>
   <div class="eyebrow">🏆 FIFA World Cup 2026 · Jun 11 – Jul 19</div>
   <h1>Every Match.<br><em>Your Time.</em></h1>
-  <p class="sub">Select your timezone → see matches in local time · Add any game or full team schedule to your calendar in one tap</p>
+  <p class="sub">Select your timezone → see matches in local time · Add individual games to Google Calendar in one tap</p>
 </header>
 
 <div class="controls">
@@ -409,13 +314,6 @@ body.team-mode footer a { color: var(--team-accent); }
   <div class="stat"><div class="stat-n">16</div><div class="stat-l">Host Cities</div></div>
 </div>
 
-<div class="bulk-bar" id="bulkBar">
-  <div class="bulk-info">
-    Add <span class="count" id="bulkCount">0</span> upcoming <span class="team-name" id="bulkTeamName">—</span> matches to your calendar
-  </div>
-  <button class="bulk-btn" id="bulkBtn">📅 Add All to Calendar</button>
-</div>
-
 <div id="list"></div>
 
 </div>
@@ -426,35 +324,6 @@ body.team-mode footer a { color: var(--team-accent); }
 </footer>
 
 <div class="toast" id="toast"></div>
-
-<div class="modal-bg" id="modal">
-  <div class="modal">
-    <button class="modal-close" id="modalClose" aria-label="Close">×</button>
-    <div class="modal-title">📅 Adding to your calendar</div>
-    <div class="modal-sub">
-      We'll download a small file with <span class="hl" id="modalCount">—</span> upcoming <span class="hl" id="modalTeam">—</span> matches.
-      Here's how to add them — takes 5 seconds:
-    </div>
-    <div class="steps">
-      <div class="step">
-        <div class="step-num">1</div>
-        <div class="step-text">Tap <strong>Download</strong> below — a small <code>.ics</code> file saves to your device.</div>
-      </div>
-      <div class="step">
-        <div class="step-num">2</div>
-        <div class="step-text"><strong>Tap the downloaded file.</strong> Your phone opens it in Google Calendar (Android) or Apple Calendar (iOS) automatically.</div>
-      </div>
-      <div class="step">
-        <div class="step-num">3</div>
-        <div class="step-text">Tap <strong>Add All</strong> in the calendar app. Done — every match is in your schedule with reminders.</div>
-      </div>
-    </div>
-    <div class="modal-actions">
-      <button class="modal-btn secondary" id="modalCancel">Cancel</button>
-      <button class="modal-btn" id="modalDownload">⬇ Download</button>
-    </div>
-  </div>
-</div>
 
 <script>
 // ── DATA ── (all 104 matches; knockouts TBD; ET times verified)
@@ -742,19 +611,18 @@ function googleCalUrl(ev){
 // ── CAL BUTTON ──
 function buildCalBtn(ev){
   const wrap=document.createElement('div'); wrap.className='cal-wrap';
-  const btn=document.createElement('button'); btn.className='cal-btn'; btn.innerHTML='📅'; btn.title='Add to Calendar'; btn.setAttribute('aria-label','Add to calendar');
-  if(isIOS()){
-    const drop=document.createElement('div'); drop.className='cal-drop';
-    drop.innerHTML=`<a class="cal-opt" id="apple-${ev.id}">🍎 &nbsp;Apple Calendar</a>
-      <a class="cal-opt" href="${googleCalUrl(ev)}" target="_blank" rel="noopener">🗓 &nbsp;Google Calendar</a>`;
-    drop.querySelector(`#apple-${ev.id}`).addEventListener('click',e=>{ e.preventDefault(); downloadICS([ev],`wc2026-match${ev.id}.ics`); drop.classList.remove('open'); });
-    drop.querySelector('a[href]').addEventListener('click',()=>drop.classList.remove('open'));
-    btn.addEventListener('click',e=>{ e.stopPropagation(); document.querySelectorAll('.cal-drop.open').forEach(d=>{if(d!==drop)d.classList.remove('open');}); drop.classList.toggle('open'); });
-    wrap.appendChild(btn); wrap.appendChild(drop);
-  } else {
-    btn.addEventListener('click',()=>window.open(googleCalUrl(ev),'_blank','noopener'));
-    wrap.appendChild(btn);
-  }
+  const btn=document.createElement('button');
+  btn.className='cal-btn';
+  btn.innerHTML='📅';
+  btn.title='Add to Google Calendar';
+  btn.setAttribute('aria-label','Add to Google Calendar');
+  btn.addEventListener('click',()=>{
+    // Opens Google Calendar's prefilled event screen. If the OS/browser has
+    // Google Calendar app link handling enabled, it may hand off to the app;
+    // otherwise it falls back to the Google Calendar website.
+    window.location.href = googleCalUrl(ev);
+  });
+  wrap.appendChild(btn);
   return wrap;
 }
 
@@ -774,32 +642,6 @@ function buildLivePill(){
   return pill;
 }
 
-// ── MODAL ──
-const modal=document.getElementById('modal'), modalClose=document.getElementById('modalClose'),
-      modalCancel=document.getElementById('modalCancel'), modalDownload=document.getElementById('modalDownload');
-let pendingEvents=null, pendingFilename=null;
-function openModal(events,teamName,filename){
-  pendingEvents=events; pendingFilename=filename;
-  document.getElementById('modalCount').textContent=events.length;
-  document.getElementById('modalTeam').textContent=teamName;
-  modal.classList.add('open');
-}
-function closeModal(){modal.classList.remove('open'); pendingEvents=null;}
-modalClose.addEventListener('click',closeModal); modalCancel.addEventListener('click',closeModal);
-modal.addEventListener('click',e=>{if(e.target===modal)closeModal();});
-modalDownload.addEventListener('click',()=>{ if(pendingEvents){downloadICS(pendingEvents,pendingFilename); closeModal();} });
-
-document.getElementById('bulkBtn').addEventListener('click',()=>{
-  const team=teamSel.value; if(!team)return;
-  const tz=tzSel.value, now=Date.now();
-  const evs=MATCHES.filter(m=>m.home===team||m.away===team)
-    .map(m=>({...m,raw:convertET(m.date,m.et,tz).raw}))
-    .filter(m=>matchStatus(m,m.raw,now)==='upcoming');
-  if(evs.length===0){showToast('No upcoming matches for this team'); return;}
-  openModal(evs,`${FLAGS[team]||''} ${team}`,`wc2026-${team.replace(/\s+/g,'-')}.ics`);
-});
-
-document.addEventListener('click',()=>document.querySelectorAll('.cal-drop.open').forEach(d=>d.classList.remove('open')));
 
 // ── TEAM MODE ──
 function applyTeamMode(team){
@@ -829,18 +671,6 @@ function render(){
   if(upcomingOnly) filtered=filtered.filter(m=>matchStatus(m,m.conv.raw,now)==='upcoming');
 
   document.getElementById('statShown').textContent=filtered.length;
-
-  const bulkBar=document.getElementById('bulkBar');
-  if(team){
-    const upcomingCount=MATCHES.filter(m=>m.home===team||m.away===team)
-      .map(m=>({...m,raw:convertET(m.date,m.et,tz).raw}))
-      .filter(m=>matchStatus(m,m.raw,now)==='upcoming').length;
-    if(upcomingCount>0){
-      bulkBar.classList.add('visible');
-      document.getElementById('bulkCount').textContent=upcomingCount;
-      document.getElementById('bulkTeamName').textContent=`${FLAGS[team]||''} ${team}`;
-    } else bulkBar.classList.remove('visible');
-  } else bulkBar.classList.remove('visible');
 
   const list=document.getElementById('list');
   if(filtered.length===0){
