@@ -181,7 +181,7 @@ body.team-mode .date-hdr { color: var(--text-muted); }
   margin-bottom: 7px;
   display: grid; grid-template-columns: 1fr auto;
   gap: 6px 14px; align-items: center;
-  position: relative; overflow: hidden;
+  position: relative; overflow: visible;
   transition: border-color .18s, background .4s, opacity .3s;
 }
 .mcard:hover { border-color: var(--accent-2); }
@@ -251,7 +251,10 @@ body.team-mode .completed-pill {
 }
 
 /* calendar button */
-.cal-wrap { position: relative; }
+.cal-wrap {
+  position: relative;
+  z-index: 50;
+}
 .cal-btn {
   background: var(--line); border: 1px solid var(--border); border-radius: 6px;
   width: 36px; height: 36px; display: flex; align-items: center; justify-content: center;
@@ -266,7 +269,7 @@ body.team-mode .cal-btn:hover { border-color: var(--team-accent); background: #f
 .cal-drop {
   display: none; position: absolute; right: 0; top: calc(100% + 6px);
   background: var(--bg-card); border: 1px solid var(--accent-2); border-radius: 8px;
-  overflow: hidden; z-index: 100; min-width: 170px;
+  overflow: hidden; z-index: 9999; min-width: 170px;
   box-shadow: 0 8px 24px rgba(0,0,0,.3);
 }
 body.team-mode .cal-drop { border-color: var(--team-accent); box-shadow: 0 8px 24px rgba(0,0,0,.12); }
