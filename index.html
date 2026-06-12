@@ -40,6 +40,30 @@ select{cursor:pointer;appearance:none}
 select:hover,select:focus,input[type="search"]:focus{border-color:var(--accent)}
 body.team-mode select:hover,body.team-mode select:focus,body.team-mode input[type="search"]:focus{border-color:var(--team-accent)}
 select option{background:var(--bg-card);color:var(--text)}
+.tz-picker{position:relative;width:100%}
+.tz-trigger{
+  width:100%;display:flex;align-items:center;justify-content:space-between;gap:10px;
+  background:var(--bg-card);border:1px solid var(--border);color:var(--text);
+  font-family:'Inter',sans-serif;font-size:13px;padding:9px 12px;border-radius:6px;
+  cursor:pointer;text-align:left;outline:none;transition:border-color .2s,background .4s,color .4s;
+}
+.tz-current{overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.tz-caret{font-size:15px;color:var(--text-muted);line-height:1;transition:transform .18s ease}
+.tz-picker.open .tz-caret{transform:rotate(180deg)}
+.tz-panel{
+  display:none;position:absolute;left:0;right:0;top:calc(100% + 8px);z-index:200;
+  background:var(--bg-card);border:1px solid var(--border);border-radius:10px;
+  padding:8px;box-shadow:0 14px 36px rgba(0,0,0,.28);
+}
+.tz-picker.open .tz-panel{display:block}
+.tz-options{max-height:260px;overflow:auto;margin-top:7px;display:flex;flex-direction:column;gap:4px}
+.tz-option{
+  border:none;background:transparent;color:var(--text);font-family:'Inter',sans-serif;font-size:13px;
+  padding:9px 10px;border-radius:8px;text-align:left;cursor:pointer;
+}
+.tz-option:hover,.tz-option.active{background:var(--line);color:var(--text-strong)}
+.tz-empty{padding:12px 10px;color:var(--text-muted);font-size:12px}
+body.team-mode .tz-trigger:hover,body.team-mode .tz-trigger:focus{border-color:var(--team-accent)}
 .toggle-row{display:flex;align-items:center;gap:10px;padding:6px 0 18px;font-size:12px;color:var(--text-muted)}
 .toggle{position:relative;width:36px;height:20px;background:var(--bg-card);border:1px solid var(--border);border-radius:20px;cursor:pointer;flex-shrink:0;transition:background .2s,border-color .2s}
 .toggle::after{content:'';position:absolute;top:2px;left:2px;width:14px;height:14px;border-radius:50%;background:var(--text-muted);transition:transform .2s,background .2s}
@@ -180,6 +204,27 @@ body.team-mode select:hover,body.team-mode select:focus,body.team-mode input[typ
   box-shadow:0 0 0 3px rgba(56,189,248,.12), 0 0 28px rgba(59,130,246,.12);
 }
 select option{background:#0b1120;color:#eaf0ff}
+.tz-trigger{
+  background:rgba(2,6,23,.68);
+  border:1px solid rgba(148,163,184,.20);
+  border-radius:12px;
+  color:#f8fbff;
+  padding:11px 13px;
+  box-shadow:inset 0 1px 0 rgba(255,255,255,.04);
+}
+.tz-trigger:hover,.tz-trigger:focus{
+  border-color:#38bdf8;
+  box-shadow:0 0 0 3px rgba(56,189,248,.12),0 0 28px rgba(59,130,246,.12);
+}
+.tz-panel{
+  background:rgba(8,13,28,.98);
+  border:1px solid rgba(56,189,248,.26);
+  border-radius:16px;
+  box-shadow:0 22px 60px rgba(0,0,0,.45),0 0 34px rgba(56,189,248,.10);
+  backdrop-filter:blur(18px);
+}
+.tz-option{color:#eaf0ff}
+.tz-option:hover,.tz-option.active{background:rgba(59,130,246,.14);color:#ffffff}
 .toggle-row{color:#93a4bd;padding-bottom:20px}.toggle-label strong{color:#fff}
 .toggle{background:rgba(15,23,42,.84);border-color:rgba(148,163,184,.18)}
 .toggle.on,
@@ -326,6 +371,24 @@ body.team-mode input[type="search"]{
   box-shadow:none !important;
 }
 body.team-mode select option{background:#ffffff !important;color:#1a1a1a !important;}
+body.team-mode .tz-trigger{
+  background:var(--bg-card) !important;
+  border:1px solid var(--border) !important;
+  border-radius:6px !important;
+  color:var(--text) !important;
+  padding:9px 12px !important;
+  box-shadow:none !important;
+}
+body.team-mode .tz-panel{
+  background:#ffffff !important;
+  border:1px solid var(--border) !important;
+  border-radius:8px !important;
+  box-shadow:0 8px 24px rgba(0,0,0,.12) !important;
+  backdrop-filter:none !important;
+}
+body.team-mode .tz-option{color:#1a1a1a !important;}
+body.team-mode .tz-option:hover,body.team-mode .tz-option.active{background:var(--line) !important;color:var(--text-strong) !important;}
+body.team-mode .tz-empty{color:var(--text-muted) !important;}
 body.team-mode select:hover,
 body.team-mode select:focus,
 body.team-mode input[type="search"]:focus{
@@ -404,13 +467,18 @@ body.team-mode footer a{color:var(--team-accent) !important;}
 </header>
 
 <div class="controls">
-  <div class="ctrl" style="flex:2; min-width:260px;">
-    <label>Search Timezone</label>
-    <input id="tzSearch" type="search" placeholder="Search India, London, Dubai, New York…" autocomplete="off" />
-  </div>
-  <div class="ctrl" style="flex:2; min-width:260px;">
-    <label>Your Timezone</label>
-    <select id="tzSel"></select>
+  <div class="ctrl tz-ctrl" style="flex:2.4; min-width:260px;">
+    <label>Timezone</label>
+    <div class="tz-picker" id="tzPicker">
+      <button type="button" class="tz-trigger" id="tzTrigger" aria-haspopup="listbox" aria-expanded="false">
+        <span id="tzCurrent" class="tz-current">Detecting timezone…</span>
+        <span class="tz-caret">⌄</span>
+      </button>
+      <div class="tz-panel" id="tzPanel">
+        <input id="tzSearch" type="search" placeholder="Search city, country, timezone…" autocomplete="off" />
+        <div class="tz-options" id="tzOptions" role="listbox"></div>
+      </div>
+    </div>
   </div>
   <div class="ctrl" style="flex:2; min-width:200px;">
     <label>Filter by Team</label>
@@ -1653,22 +1721,66 @@ const STAGE_FULL={'Group':'Group Stage','R32':'Round of 32','R16':'Round of 16',
 const GROUP_MATCH_DURATION_MS=135*60*1000;
 const KNOCKOUT_MATCH_DURATION_MS=210*60*1000;
 
-const tzSel=document.getElementById('tzSel'), teamSel=document.getElementById('teamSel'), stageSel=document.getElementById('stageSel'), tzSearch=document.getElementById('tzSearch');
+const teamSel=document.getElementById('teamSel'), stageSel=document.getElementById('stageSel');
+const tzPicker=document.getElementById('tzPicker'), tzTrigger=document.getElementById('tzTrigger'), tzCurrent=document.getElementById('tzCurrent'), tzPanel=document.getElementById('tzPanel'), tzSearch=document.getElementById('tzSearch'), tzOptions=document.getElementById('tzOptions');
 const userTz=Intl.DateTimeFormat().resolvedOptions().timeZone || 'Asia/Kolkata';
 let selectedTz=TIMEZONES.some(t=>t.tz===userTz)?userTz:'Asia/Kolkata';
 let upcomingOnly=true;
 
+function selectedTimezoneLabel(){
+  return (TIMEZONES.find(t=>t.tz===selectedTz)||TIMEZONES.find(t=>t.tz==='Asia/Kolkata')||TIMEZONES[0]).l;
+}
+function updateTimezoneTrigger(){
+  tzCurrent.textContent=selectedTimezoneLabel();
+}
+function openTimezonePicker(){
+  tzPicker.classList.add('open');
+  tzTrigger.setAttribute('aria-expanded','true');
+  tzSearch.value='';
+  renderTimezoneOptions();
+  setTimeout(()=>tzSearch.focus(),0);
+}
+function closeTimezonePicker(){
+  tzPicker.classList.remove('open');
+  tzTrigger.setAttribute('aria-expanded','false');
+}
 function renderTimezoneOptions(){
   const q=tzSearch.value.trim().toLowerCase();
   const filtered=TIMEZONES.filter(t=>!q || t.l.toLowerCase().includes(q) || t.tz.toLowerCase().includes(q) || t.s.includes(q));
-  tzSel.innerHTML='';
-  const source=filtered.length?filtered:TIMEZONES;
-  source.forEach(t=>{const o=document.createElement('option');o.value=t.tz;o.textContent=t.l;if(t.tz===selectedTz)o.selected=true;tzSel.appendChild(o);});
-  if(!source.some(t=>t.tz===selectedTz)){selectedTz=source[0].tz;tzSel.value=selectedTz;}
+  tzOptions.innerHTML='';
+  if(!filtered.length){
+    tzOptions.innerHTML='<div class="tz-empty">No timezone found</div>';
+    return;
+  }
+  filtered.forEach(t=>{
+    const b=document.createElement('button');
+    b.type='button';
+    b.className='tz-option'+(t.tz===selectedTz?' active':'');
+    b.setAttribute('role','option');
+    b.setAttribute('aria-selected',t.tz===selectedTz?'true':'false');
+    b.textContent=t.l;
+    b.addEventListener('click',()=>{
+      selectedTz=t.tz;
+      updateTimezoneTrigger();
+      closeTimezonePicker();
+      render();
+    });
+    tzOptions.appendChild(b);
+  });
 }
+updateTimezoneTrigger();
 renderTimezoneOptions();
-tzSearch.addEventListener('input',()=>{renderTimezoneOptions();render();});
-tzSel.addEventListener('change',()=>{selectedTz=tzSel.value;render();});
+tzTrigger.addEventListener('click',e=>{e.stopPropagation();tzPicker.classList.contains('open')?closeTimezonePicker():openTimezonePicker();});
+tzPanel.addEventListener('click',e=>e.stopPropagation());
+tzSearch.addEventListener('input',renderTimezoneOptions);
+tzSearch.addEventListener('keydown',e=>{
+  if(e.key==='Escape') closeTimezonePicker();
+  if(e.key==='Enter'){
+    const first=tzOptions.querySelector('.tz-option');
+    if(first) first.click();
+  }
+});
+document.addEventListener('click',closeTimezonePicker);
 
 const realTeams=[...new Set(MATCHES.flatMap(m=>[m.home,m.away]).filter(t=>FLAGS[t] && t!=='TBD'))].sort();
 realTeams.forEach(t=>{const o=document.createElement('option');o.value=t;o.textContent=`${FLAGS[t]||''} ${t}`;teamSel.appendChild(o);});
