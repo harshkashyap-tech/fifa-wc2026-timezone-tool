@@ -97,14 +97,19 @@ body.team-mode h1 em { color: var(--team-accent); }
   font-family: 'JetBrains Mono', monospace; font-size: 10px;
   letter-spacing: .12em; text-transform: uppercase; color: var(--text-muted);
 }
-select {
+select,
+input[type="search"] {
   background: var(--bg-card); border: 1px solid var(--border);
   color: var(--text); font-family: 'Inter', sans-serif; font-size: 13px;
-  padding: 9px 12px; border-radius: 6px; cursor: pointer; appearance: none; outline: none;
+  padding: 9px 12px; border-radius: 6px; outline: none;
   transition: border-color .2s, background .4s, color .4s;
 }
-select:hover, select:focus { border-color: var(--accent); }
-body.team-mode select:hover, body.team-mode select:focus { border-color: var(--team-accent); }
+select { cursor: pointer; appearance: none; }
+input[type="search"] { width: 100%; }
+input[type="search"]::placeholder { color: var(--text-muted); opacity: .75; }
+select:hover, select:focus, input[type="search"]:hover, input[type="search"]:focus { border-color: var(--accent); }
+body.team-mode select:hover, body.team-mode select:focus,
+body.team-mode input[type="search"]:hover, body.team-mode input[type="search"]:focus { border-color: var(--team-accent); }
 select option { background: var(--bg-card); color: var(--text); }
 
 /* UPCOMING TOGGLE */
@@ -141,6 +146,30 @@ body.team-mode .toggle.on::after { background: var(--team-accent); }
 body.team-mode .stat-n { color: var(--team-accent); }
 .stat-l { font-size: 10px; color: var(--text-muted); margin-top: 2px; text-transform: uppercase; letter-spacing: .07em; }
 
+/* BULK BAR */
+.bulk-bar {
+  display: none;
+  align-items: center; justify-content: space-between;
+  background: var(--bg-card);
+  border: 1px solid var(--accent-2);
+  border-radius: 10px; padding: 12px 18px; margin-bottom: 18px; gap: 12px;
+}
+body.team-mode .bulk-bar { border-color: var(--team-accent); }
+.bulk-bar.visible { display: flex; }
+.bulk-info { font-size: 13px; color: var(--text-strong); line-height: 1.4; }
+.bulk-info .team-name { color: var(--accent); font-weight: 600; }
+.bulk-info .count { font-family: 'JetBrains Mono', monospace; color: var(--accent); }
+body.team-mode .bulk-info .team-name,
+body.team-mode .bulk-info .count { color: var(--team-accent); }
+.bulk-btn {
+  background: var(--accent); color: #0a1a0d; border: none; border-radius: 6px;
+  padding: 9px 16px; font-size: 12px; font-weight: 600; cursor: pointer;
+  white-space: nowrap; letter-spacing: .04em; flex-shrink: 0;
+  transition: opacity .15s, transform .1s, background .3s;
+}
+body.team-mode .bulk-btn { background: var(--team-accent); color: #ffffff; }
+.bulk-btn:hover { opacity: .9; }
+.bulk-btn:active { transform: scale(.97); }
 
 /* DATE GROUP */
 .date-hdr {
@@ -238,6 +267,23 @@ body.team-mode .completed-pill {
 .cal-btn:hover { border-color: var(--accent); background: #1a3d1f; }
 body.team-mode .cal-btn:hover { border-color: var(--team-accent); background: #f5f5ef; }
 
+/* calendar dropdown */
+.cal-drop {
+  display: none; position: absolute; right: 0; top: calc(100% + 6px);
+  background: var(--bg-card); border: 1px solid var(--accent-2); border-radius: 8px;
+  overflow: hidden; z-index: 100; min-width: 170px;
+  box-shadow: 0 8px 24px rgba(0,0,0,.3);
+}
+body.team-mode .cal-drop { border-color: var(--team-accent); box-shadow: 0 8px 24px rgba(0,0,0,.12); }
+.cal-drop.open { display: block; }
+.cal-opt {
+  display: flex; align-items: center; gap: 8px;
+  padding: 10px 14px; font-size: 12px; color: var(--text);
+  cursor: pointer; text-decoration: none; border-bottom: 1px solid var(--border);
+  transition: background .12s;
+}
+.cal-opt:last-child { border-bottom: none; }
+.cal-opt:hover { background: var(--line); }
 
 /* empty state */
 .empty { text-align: center; padding: 60px 20px; color: var(--text-muted); font-size: 14px; }
@@ -253,6 +299,57 @@ body.team-mode .cal-btn:hover { border-color: var(--team-accent); background: #f
 body.team-mode .toast { background: var(--team-accent); color: #ffffff; }
 .toast.show { transform: translateX(-50%) translateY(0); }
 
+/* MODAL */
+.modal-bg {
+  display: none; position: fixed; inset: 0;
+  background: rgba(0,0,0,.7); z-index: 1000;
+  align-items: center; justify-content: center;
+  padding: 20px;
+}
+.modal-bg.open { display: flex; }
+.modal {
+  background: var(--bg-card); border: 1px solid var(--accent-2);
+  border-radius: 14px; padding: 28px 26px; max-width: 420px; width: 100%;
+  position: relative;
+}
+body.team-mode .modal { border-color: var(--team-accent); }
+.modal-title {
+  font-family: 'Bebas Neue', sans-serif; font-size: 26px;
+  color: var(--accent); margin-bottom: 6px; letter-spacing: .02em;
+}
+body.team-mode .modal-title { color: var(--team-accent); }
+.modal-sub { font-size: 13px; color: var(--text-strong); margin-bottom: 18px; line-height: 1.5; }
+.modal-sub .hl { color: var(--accent); font-weight: 600; }
+body.team-mode .modal-sub .hl { color: var(--team-accent); }
+.steps { display: flex; flex-direction: column; gap: 10px; margin-bottom: 22px; }
+.step { display: flex; gap: 10px; font-size: 12px; color: var(--text-strong); line-height: 1.5; }
+.step-num {
+  background: var(--accent); color: #0a1a0d;
+  width: 22px; height: 22px; border-radius: 50%;
+  display: flex; align-items: center; justify-content: center;
+  font-family: 'JetBrains Mono', monospace; font-size: 11px; font-weight: 700;
+  flex-shrink: 0;
+}
+body.team-mode .step-num { background: var(--team-accent); color: #ffffff; }
+.step-text strong { color: var(--accent); }
+body.team-mode .step-text strong { color: var(--team-accent); }
+.modal-actions { display: flex; gap: 8px; }
+.modal-btn {
+  flex: 1; background: var(--accent); color: #0a1a0d;
+  border: none; border-radius: 6px; padding: 11px;
+  font-size: 13px; font-weight: 600; cursor: pointer;
+  transition: opacity .15s;
+}
+body.team-mode .modal-btn { background: var(--team-accent); color: #ffffff; }
+.modal-btn:hover { opacity: .9; }
+.modal-btn.secondary { background: transparent; color: var(--text-muted); border: 1px solid var(--border); }
+body.team-mode .modal-btn.secondary { color: var(--text-muted); }
+.modal-close {
+  position: absolute; top: 12px; right: 14px;
+  background: none; border: none; color: var(--text-muted);
+  font-size: 22px; cursor: pointer; line-height: 1;
+}
+.modal-close:hover { color: var(--text-strong); }
 
 footer {
   border-top: 1px solid var(--border); margin-top: 40px; padding-top: 20px;
@@ -281,6 +378,7 @@ body.team-mode footer a { color: var(--team-accent); }
 <div class="controls">
   <div class="ctrl" style="flex:2; min-width:240px;">
     <label>Your Timezone</label>
+    <input id="tzSearch" type="search" placeholder="Search country or timezone…" autocomplete="off"/>
     <select id="tzSel"></select>
   </div>
   <div class="ctrl" style="flex:2; min-width:200px;">
@@ -320,7 +418,7 @@ body.team-mode footer a { color: var(--team-accent); }
 
 <footer>
   Data sourced from the official FIFA / ESPN schedule · All 104 matches · Jun 11 – Jul 19, 2026<br><br>
-  Made for <a href="#">@harshkashyap.ai</a> · World Cup 2026 Edition
+  Made By <a href="#">@hars</a>
 </footer>
 
 <div class="toast" id="toast"></div>
@@ -538,11 +636,77 @@ const STAGE_LABELS = {'Group':'GRP','R32':'R32','R16':'R16','QF':'QF','SF':'SF',
 const STAGE_FULL = {'Group':'Group Stage','R32':'Round of 32','R16':'Round of 16','QF':'Quarterfinal','SF':'Semifinal','3rd':'Third-Place Playoff','Final':'FINAL 🏆'};
 
 // ── DROPDOWNS ──
-const tzSel=document.getElementById('tzSel'), teamSel=document.getElementById('teamSel'), stageSel=document.getElementById('stageSel');
+const tzSel=document.getElementById('tzSel'), tzSearch=document.getElementById('tzSearch'), teamSel=document.getElementById('teamSel'), stageSel=document.getElementById('stageSel');
 const userTz=Intl.DateTimeFormat().resolvedOptions().timeZone;
-TIMEZONES.forEach(t=>{ const o=document.createElement('option'); o.value=t.tz; o.textContent=t.l; if(t.tz===userTz)o.selected=true; tzSel.appendChild(o); });
+const TIMEZONE_ALIASES = {
+  'America/New_York':'USA United States US Eastern ET New York Washington Boston Miami Atlanta Philadelphia',
+  'America/Chicago':'USA United States US Central CT Chicago Dallas Houston Kansas City Mexico',
+  'America/Denver':'USA United States US Mountain MT Denver',
+  'America/Los_Angeles':'USA United States US Pacific PT Los Angeles San Francisco Seattle California',
+  'America/Anchorage':'USA United States Alaska AKST Anchorage',
+  'Pacific/Honolulu':'USA United States Hawaii HST Honolulu',
+  'America/Mexico_City':'Mexico CDMX Mexico City Guadalajara Monterrey',
+  'America/Toronto':'Canada Toronto Eastern Ontario',
+  'America/Vancouver':'Canada Vancouver British Columbia Pacific',
+  'America/Sao_Paulo':'Brazil Brasil Sao Paulo Rio BRT',
+  'America/Argentina/Buenos_Aires':'Argentina Buenos Aires ART',
+  'America/Santiago':'Chile Santiago CLT',
+  'America/Bogota':'Colombia Peru Ecuador Bogota Lima Quito COT PET',
+  'America/Caracas':'Venezuela Caracas VET',
+  'Europe/London':'UK United Kingdom England London Britain BST GMT',
+  'Europe/Paris':'France Spain Italy Paris Madrid Rome CEST',
+  'Europe/Berlin':'Germany Netherlands Berlin Amsterdam CEST',
+  'Europe/Athens':'Greece Finland Athens Helsinki EEST',
+  'Europe/Moscow':'Russia Moscow MSK',
+  'Africa/Johannesburg':'South Africa Egypt Johannesburg Cairo SAST EET',
+  'Africa/Lagos':'Nigeria Ghana Lagos Accra WAT GMT',
+  'Africa/Nairobi':'Kenya Nairobi EAT',
+  'Asia/Dubai':'UAE United Arab Emirates Oman Dubai Abu Dhabi Muscat GST',
+  'Asia/Tehran':'Iran Tehran IRST',
+  'Asia/Kabul':'Afghanistan Kabul AFT',
+  'Asia/Karachi':'Pakistan Karachi Islamabad Lahore PKT',
+  'Asia/Kolkata':'India Bharat Delhi New Delhi Mumbai Kolkata Bengaluru Bangalore Hyderabad Chennai Pune IST',
+  'Asia/Kathmandu':'Nepal Kathmandu NPT',
+  'Asia/Dhaka':'Bangladesh Dhaka BST',
+  'Asia/Rangoon':'Myanmar Yangon Rangoon MMT',
+  'Asia/Bangkok':'Thailand Indonesia Bangkok Jakarta ICT WIB',
+  'Asia/Singapore':'Singapore Malaysia Kuala Lumpur SGT MYT',
+  'Asia/Shanghai':'China Beijing Shanghai CST',
+  'Asia/Hong_Kong':'Hong Kong HKT',
+  'Asia/Tokyo':'Japan Korea South Korea Tokyo Seoul JST KST',
+  'Australia/Perth':'Australia Perth Western Australia AWST',
+  'Australia/Darwin':'Australia Darwin Northern Territory ACST',
+  'Australia/Adelaide':'Australia Adelaide South Australia ACST',
+  'Australia/Sydney':'Australia Sydney Melbourne Canberra AEST',
+  'Pacific/Auckland':'New Zealand Auckland Wellington NZST',
+  'Pacific/Fiji':'Fiji Suva FJT'
+};
+function populateTimezones(query=''){
+  const current=tzSel.value || userTz;
+  const q=query.trim().toLowerCase();
+  const matches=TIMEZONES.filter(t=>{
+    const haystack=`${t.l} ${t.tz} ${TIMEZONE_ALIASES[t.tz]||''}`.toLowerCase();
+    return !q || haystack.includes(q);
+  });
+  tzSel.innerHTML='';
+  if(matches.length===0){
+    const o=document.createElement('option');
+    o.value=''; o.textContent='No timezone found'; o.disabled=true; o.selected=true;
+    tzSel.appendChild(o);
+    return;
+  }
+  matches.forEach(t=>{
+    const o=document.createElement('option');
+    o.value=t.tz; o.textContent=t.l;
+    tzSel.appendChild(o);
+  });
+  tzSel.value=matches.some(t=>t.tz===current) ? current : matches[0].tz;
+}
+populateTimezones();
+if([...tzSel.options].some(o=>o.value===userTz)) tzSel.value=userTz;
 const allTeams=[...new Set(MATCHES.flatMap(m=>[m.home,m.away]).filter(t=>t!=='TBD'))].sort();
 allTeams.forEach(t=>{ const o=document.createElement('option'); o.value=t; o.textContent=`${FLAGS[t]||''} ${t}`; teamSel.appendChild(o); });
+tzSearch.addEventListener('input',()=>{ populateTimezones(tzSearch.value); render(); });
 [tzSel,teamSel,stageSel].forEach(el=>el.addEventListener('change',render));
 
 // ── TOGGLE ──
@@ -659,6 +823,7 @@ function applyTeamMode(team){
 // ── RENDER ──
 function render(){
   const tz=tzSel.value, team=teamSel.value, stage=stageSel.value, now=Date.now();
+  if(!tz) return;
   applyTeamMode(team);
 
   let filtered=MATCHES.filter(m=>{
@@ -667,8 +832,10 @@ function render(){
     return tm && st;
   });
 
-  filtered=filtered.map(m=>({...m,conv:convertET(m.date,m.et,tz)}));
-  if(upcomingOnly) filtered=filtered.filter(m=>matchStatus(m,m.conv.raw,now)==='upcoming');
+  filtered=filtered
+    .map(m=>({...m,conv:convertET(m.date,m.et,tz)}))
+    .filter(m=>!upcomingOnly || matchStatus(m,m.conv.raw,now)==='upcoming')
+    .sort((a,b)=>a.conv.raw.getTime()-b.conv.raw.getTime() || a.id-b.id);
 
   document.getElementById('statShown').textContent=filtered.length;
 
@@ -678,11 +845,18 @@ function render(){
     return;
   }
 
-  const byDate={};
-  filtered.forEach(m=>{ const k=m.conv.date; if(!byDate[k])byDate[k]=[]; byDate[k].push(m); });
+  const byDate=[];
+  filtered.forEach(m=>{
+    const last=byDate[byDate.length-1];
+    if(!last || last.dateLabel!==m.conv.date){
+      byDate.push({dateLabel:m.conv.date,matches:[m]});
+    } else {
+      last.matches.push(m);
+    }
+  });
 
   list.innerHTML='';
-  Object.entries(byDate).forEach(([dateLabel,matches])=>{
+  byDate.forEach(({dateLabel,matches})=>{
     const dh=document.createElement('div'); dh.className='date-hdr'; dh.textContent=`📅 ${dateLabel}`;
     list.appendChild(dh);
     matches.forEach(m=>{
