@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8"/>
 <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-<title>Preview — FIFA World Cup 2026 Theme</title>
+<title>FIFA World Cup 2026 — Match Times in Your Timezone</title>
 <style>
 @import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Inter:wght@300;400;500;600&family=JetBrains+Mono:wght@400;600&display=swap');
 
@@ -270,6 +270,128 @@ footer{border-top-color:rgba(148,163,184,.14);color:#7f8fa8}
   .stat{border-radius:14px}
   .mcard{border-radius:16px}
 }
+
+
+/* Team-selected mode: restore the original clean white + flag-gradient look.
+   All Teams keeps the Midnight Neon theme; selecting a country switches to this. */
+body.team-mode{
+  --bg-page:#fafaf7;
+  --bg-card:#ffffff;
+  --bg-stat:#ffffff;
+  --line:#f1f1ec;
+  --border:#e6e6df;
+  --text:#1a1a1a;
+  --text-muted:#767670;
+  --text-strong:#0a0a0a;
+  --header-border:#e6e6df;
+  background:
+    radial-gradient(ellipse 800px 600px at 15% 0%, var(--team-c1) 0%, transparent 65%),
+    radial-gradient(ellipse 700px 500px at 85% 30%, var(--team-c2) 0%, transparent 60%),
+    radial-gradient(ellipse 600px 800px at 50% 100%, var(--team-c1) 0%, transparent 55%),
+    var(--bg-page) !important;
+  background-attachment:fixed !important;
+  color:var(--text) !important;
+}
+body.team-mode::before,
+body.team-mode::after{display:none !important;opacity:0 !important;}
+body.team-mode header{padding:44px 0 28px;border-bottom:1px solid var(--header-border) !important;}
+body.team-mode header::after{display:none !important;}
+body.team-mode .eyebrow{color:var(--team-accent) !important;text-shadow:none !important;}
+body.team-mode h1{color:var(--text-strong) !important;text-shadow:none !important;}
+body.team-mode h1 em{
+  background:none !important;
+  -webkit-background-clip:initial !important;
+  background-clip:initial !important;
+  color:var(--team-accent) !important;
+  text-shadow:none !important;
+}
+body.team-mode .sub{color:var(--text-muted) !important;}
+body.team-mode .controls{
+  background:transparent !important;
+  border:none !important;
+  border-radius:0 !important;
+  box-shadow:none !important;
+  backdrop-filter:none !important;
+  padding:22px 0 14px !important;
+  margin:0 !important;
+}
+body.team-mode .ctrl label{color:var(--text-muted) !important;}
+body.team-mode select,
+body.team-mode input[type="search"]{
+  background:var(--bg-card) !important;
+  border:1px solid var(--border) !important;
+  border-radius:6px !important;
+  color:var(--text) !important;
+  padding:9px 12px !important;
+  box-shadow:none !important;
+}
+body.team-mode select option{background:#ffffff !important;color:#1a1a1a !important;}
+body.team-mode select:hover,
+body.team-mode select:focus,
+body.team-mode input[type="search"]:focus{
+  border-color:var(--team-accent) !important;
+  box-shadow:none !important;
+}
+body.team-mode .toggle-row{color:var(--text-muted) !important;}
+body.team-mode .toggle-label strong{color:var(--text-strong) !important;}
+body.team-mode .toggle{background:var(--bg-card) !important;border-color:var(--border) !important;}
+body.team-mode .toggle::after{background:var(--text-muted) !important;box-shadow:none !important;}
+body.team-mode .toggle.on{background:var(--line) !important;border-color:var(--team-accent) !important;}
+body.team-mode .toggle.on::after{background:var(--team-accent) !important;box-shadow:none !important;}
+body.team-mode .stats{gap:1px !important;background:var(--border) !important;border-radius:8px !important;overflow:hidden !important;}
+body.team-mode .stat{background:var(--bg-stat) !important;border:none !important;border-radius:0 !important;box-shadow:none !important;}
+body.team-mode .stat-n{color:var(--team-accent) !important;text-shadow:none !important;}
+body.team-mode .stat-l{color:var(--text-muted) !important;}
+body.team-mode .date-hdr{border-top:1px solid var(--border) !important;color:var(--text-muted) !important;padding:14px 0 6px !important;}
+body.team-mode .mcard{
+  background:var(--bg-card) !important;
+  border:1px solid var(--border) !important;
+  border-radius:10px !important;
+  box-shadow:none !important;
+  backdrop-filter:none !important;
+  margin-bottom:7px !important;
+  padding:14px 16px !important;
+  transform:none !important;
+}
+body.team-mode .mcard::before{display:none !important;}
+body.team-mode .mcard:hover{border-color:var(--team-accent) !important;box-shadow:none !important;transform:none !important;}
+body.team-mode .mcard.completed{opacity:.6 !important;}
+body.team-mode .mteams{color:var(--text-strong) !important;}
+body.team-mode .mteams .vs,
+body.team-mode .mmeta,
+body.team-mode .mdate-local,
+body.team-mode .official-et{color:var(--text-muted) !important;}
+body.team-mode .badge{
+  background:var(--line) !important;
+  color:var(--team-accent) !important;
+  border:none !important;
+  border-radius:3px !important;
+  padding:2px 6px !important;
+}
+body.team-mode .badge.knockout{
+  background:rgba(0,0,0,.04) !important;
+  color:var(--team-accent) !important;
+  border:1px solid var(--team-accent) !important;
+}
+body.team-mode .mtime{color:var(--text-strong) !important;text-shadow:none !important;}
+body.team-mode .mtime.ft{color:var(--text-muted) !important;}
+body.team-mode .mtime.live-txt{color:#e45745 !important;text-shadow:none !important;}
+body.team-mode .completed-pill{background:rgba(34,139,87,.08) !important;color:#1b7a45 !important;border-color:rgba(34,139,87,.5) !important;}
+body.team-mode .live-pill{background:rgba(228,87,69,.12) !important;color:#e45745 !important;border-color:rgba(228,87,69,.5) !important;}
+body.team-mode .cal-btn{
+  width:36px !important;
+  height:36px !important;
+  border-radius:6px !important;
+  background:var(--line) !important;
+  border:1px solid var(--border) !important;
+  box-shadow:none !important;
+  color:var(--text) !important;
+}
+body.team-mode .cal-btn:hover{border-color:var(--team-accent) !important;background:#f5f5ef !important;box-shadow:none !important;}
+body.team-mode .empty{color:var(--text-muted) !important;}
+body.team-mode .toast{background:var(--team-accent) !important;color:#ffffff !important;box-shadow:none !important;}
+body.team-mode footer{border-top-color:var(--border) !important;color:var(--text-muted) !important;}
+body.team-mode footer a{color:var(--team-accent) !important;}
 
 </style>
 </head>
