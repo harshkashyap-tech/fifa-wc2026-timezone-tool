@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8"/>
 <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-<title>FIFA World Cup 2026 — Match Times in Your Timezone</title>
+<title>Preview — FIFA World Cup 2026 Theme</title>
 <style>
 @import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Inter:wght@300;400;500;600&family=JetBrains+Mono:wght@400;600&display=swap');
 
@@ -56,6 +56,221 @@ body.team-mode .toggle.on{background:var(--line);border-color:var(--team-accent)
 .empty{text-align:center;padding:60px 20px;color:var(--text-muted);font-size:14px}.empty-icon{font-size:44px;margin-bottom:10px;display:block}.toast{position:fixed;bottom:24px;left:50%;transform:translateX(-50%) translateY(80px);background:var(--accent);color:#0a1a0d;padding:10px 22px;border-radius:50px;font-size:13px;font-weight:600;letter-spacing:.04em;transition:transform .3s,background .3s;pointer-events:none;z-index:999}body.team-mode .toast{background:var(--team-accent);color:#fff}.toast.show{transform:translateX(-50%) translateY(0)}
 footer{border-top:1px solid var(--border);margin-top:40px;padding-top:20px;font-family:'JetBrains Mono',monospace;font-size:10px;color:var(--text-muted);text-align:center;letter-spacing:.06em}footer a{color:var(--accent-2);text-decoration:none}body.team-mode footer a{color:var(--team-accent)}
 @media(max-width:620px){.stats{display:grid;grid-template-columns:1fr 1fr}.mcard{grid-template-columns:1fr}.mright{justify-content:flex-start}.mtime-wrap{text-align:left}.controls{padding-top:16px}}
+
+
+/* ─────────────────────────────────────────────
+   THEME PREVIEW: Midnight Neon — purple/black/blue
+   Safe preview override. Remove/replace this block if you want to go back.
+───────────────────────────────────────────── */
+:root {
+  --bg-page:#03040a;
+  --bg-card:rgba(11,17,32,.78);
+  --bg-stat:rgba(15,23,42,.72);
+  --line:rgba(59,130,246,.14);
+  --border:rgba(148,163,184,.18);
+  --text:#eaf0ff;
+  --text-muted:#93a4bd;
+  --text-strong:#ffffff;
+  --accent:#8b5cf6;
+  --accent-2:#38bdf8;
+  --header-border:rgba(96,165,250,.18);
+  --team-c1:rgba(139,92,246,.22);
+  --team-c2:rgba(34,211,238,.18);
+  --team-accent:#38bdf8;
+}
+body.team-mode {
+  --bg-page:#03040a;
+  --bg-card:rgba(11,17,32,.80);
+  --bg-stat:rgba(15,23,42,.72);
+  --line:rgba(59,130,246,.14);
+  --border:rgba(148,163,184,.18);
+  --text:#eaf0ff;
+  --text-muted:#93a4bd;
+  --text-strong:#ffffff;
+  --header-border:rgba(96,165,250,.18);
+}
+body{
+  background:#03040a;
+  background-image:
+    radial-gradient(circle at 18% -8%, rgba(139,92,246,.48) 0%, transparent 36%),
+    radial-gradient(circle at 92% 12%, rgba(34,211,238,.30) 0%, transparent 34%),
+    radial-gradient(circle at 50% 105%, rgba(37,99,235,.22) 0%, transparent 44%),
+    linear-gradient(180deg,#03040a 0%,#07091a 48%,#03040a 100%);
+  background-attachment:fixed;
+}
+body.team-mode{
+  background:
+    radial-gradient(circle at 14% -8%, var(--team-c1) 0%, transparent 34%),
+    radial-gradient(circle at 88% 8%, rgba(34,211,238,.28) 0%, transparent 32%),
+    radial-gradient(circle at 50% 105%, rgba(37,99,235,.22) 0%, transparent 44%),
+    linear-gradient(180deg,#03040a 0%,#07091a 48%,#03040a 100%);
+  background-attachment:fixed;
+}
+body::before{
+  background:
+    linear-gradient(rgba(255,255,255,.034) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255,255,255,.034) 1px, transparent 1px);
+  background-size:48px 48px;
+  opacity:.42;
+  mask-image:radial-gradient(circle at 50% 18%, black 0%, transparent 72%);
+  -webkit-mask-image:radial-gradient(circle at 50% 18%, black 0%, transparent 72%);
+}
+body::after{
+  content:'';
+  position:fixed;
+  inset:0;
+  pointer-events:none;
+  z-index:0;
+  background:
+    radial-gradient(circle at 50% 0%, rgba(255,255,255,.10), transparent 18%),
+    linear-gradient(120deg, transparent 0 42%, rgba(59,130,246,.09) 45%, transparent 49% 100%);
+  opacity:.7;
+}
+.wrap{max-width:940px;padding-bottom:92px}
+header{
+  position:relative;
+  padding:56px 0 34px;
+  border-bottom:1px solid rgba(56,189,248,.18);
+}
+header::after{
+  content:'';
+  position:absolute;
+  left:0;right:0;bottom:-1px;height:1px;
+  background:linear-gradient(90deg,transparent,rgba(139,92,246,.85),rgba(34,211,238,.85),transparent);
+}
+.eyebrow{
+  color:#67e8f9;
+  text-shadow:0 0 18px rgba(34,211,238,.55);
+}
+body.team-mode .eyebrow{color:#67e8f9}
+h1{
+  letter-spacing:.012em;
+  text-shadow:0 18px 55px rgba(0,0,0,.65);
+}
+h1 em,
+body.team-mode h1 em{
+  background:linear-gradient(92deg,#a78bfa 0%,#60a5fa 48%,#22d3ee 100%);
+  -webkit-background-clip:text;
+  background-clip:text;
+  color:transparent;
+  text-shadow:none;
+}
+.sub{color:#aab7ce;max-width:660px}
+.controls{
+  background:linear-gradient(180deg,rgba(15,23,42,.62),rgba(2,6,23,.34));
+  border:1px solid rgba(148,163,184,.16);
+  border-radius:20px;
+  padding:16px;
+  margin:22px 0 14px;
+  box-shadow:0 24px 70px rgba(0,0,0,.28), inset 0 1px 0 rgba(255,255,255,.05);
+  backdrop-filter:blur(18px);
+}
+.ctrl label{color:#8193af}
+select,input[type="search"]{
+  background:rgba(2,6,23,.68);
+  border:1px solid rgba(148,163,184,.20);
+  border-radius:12px;
+  color:#f8fbff;
+  padding:11px 13px;
+  box-shadow:inset 0 1px 0 rgba(255,255,255,.04);
+}
+select:hover,select:focus,input[type="search"]:focus,
+body.team-mode select:hover,body.team-mode select:focus,body.team-mode input[type="search"]:focus{
+  border-color:#38bdf8;
+  box-shadow:0 0 0 3px rgba(56,189,248,.12), 0 0 28px rgba(59,130,246,.12);
+}
+select option{background:#0b1120;color:#eaf0ff}
+.toggle-row{color:#93a4bd;padding-bottom:20px}.toggle-label strong{color:#fff}
+.toggle{background:rgba(15,23,42,.84);border-color:rgba(148,163,184,.18)}
+.toggle.on,
+body.team-mode .toggle.on{background:linear-gradient(135deg,rgba(139,92,246,.25),rgba(56,189,248,.22));border-color:rgba(56,189,248,.55)}
+.toggle.on::after,
+body.team-mode .toggle.on::after{background:#67e8f9;box-shadow:0 0 16px rgba(103,232,249,.9)}
+.stats{
+  gap:10px;
+  background:transparent;
+  overflow:visible;
+}
+.stat{
+  border:1px solid rgba(148,163,184,.16);
+  border-radius:16px;
+  background:linear-gradient(180deg,rgba(15,23,42,.74),rgba(2,6,23,.42));
+  box-shadow:0 14px 44px rgba(0,0,0,.22), inset 0 1px 0 rgba(255,255,255,.05);
+}
+.stat-n,
+body.team-mode .stat-n{
+  color:#67e8f9;
+  text-shadow:0 0 20px rgba(34,211,238,.40);
+}
+.stat-l{color:#8392aa}.date-hdr{border-top-color:rgba(148,163,184,.14);color:#8bafff;padding-top:18px}
+.mcard{
+  border:1px solid rgba(99,102,241,.24);
+  border-radius:18px;
+  background:
+    linear-gradient(180deg,rgba(15,23,42,.88),rgba(2,6,23,.70)),
+    radial-gradient(circle at 0% 0%,rgba(139,92,246,.18),transparent 38%);
+  box-shadow:0 18px 52px rgba(0,0,0,.28), inset 0 1px 0 rgba(255,255,255,.055);
+  margin-bottom:10px;
+  padding:16px 17px;
+  backdrop-filter:blur(14px);
+  transition:transform .18s ease,border-color .18s ease,box-shadow .18s ease,background .4s,opacity .3s;
+}
+.mcard::before{
+  content:'';
+  position:absolute;
+  left:0;top:14px;bottom:14px;width:3px;
+  border-radius:0 8px 8px 0;
+  background:linear-gradient(180deg,#8b5cf6,#38bdf8);
+  opacity:.62;
+}
+.mcard:hover,
+body.team-mode .mcard:hover{
+  transform:translateY(-2px);
+  border-color:rgba(56,189,248,.62);
+  box-shadow:0 22px 70px rgba(0,0,0,.36),0 0 34px rgba(56,189,248,.10), inset 0 1px 0 rgba(255,255,255,.07);
+}
+.mcard.completed{opacity:.48}.mcard.live{border-color:rgba(251,113,133,.72);box-shadow:0 0 28px rgba(251,113,133,.12)}
+.mteams{font-size:15px;color:#f8fbff}.mteams .vs{color:#7f8fa8}.mmeta{color:#94a3b8}
+.badge,
+body.team-mode .badge{
+  background:rgba(59,130,246,.12);
+  color:#93c5fd;
+  border:1px solid rgba(59,130,246,.24);
+  border-radius:999px;
+  padding:3px 8px;
+}
+.badge.knockout,
+body.team-mode .badge.knockout{
+  background:rgba(139,92,246,.14);
+  color:#c4b5fd;
+  border-color:rgba(139,92,246,.38);
+}
+.mtime{
+  color:#67e8f9;
+  text-shadow:0 0 18px rgba(34,211,238,.32);
+}
+.mtime.ft{color:#7d8ba3;text-shadow:none}.mtime.live-txt{color:#fb7185;text-shadow:0 0 16px rgba(251,113,133,.28)}
+.mdate-local,.official-et{color:#8a9ab5}.completed-pill{background:rgba(34,197,94,.10);border-color:rgba(34,197,94,.34);color:#86efac}.live-pill{background:rgba(251,113,133,.10);border-color:rgba(251,113,133,.42);color:#fb7185}
+.cal-btn{
+  width:40px;height:40px;border-radius:14px;
+  background:linear-gradient(135deg,#7c3aed,#2563eb 58%,#0891b2);
+  border:1px solid rgba(255,255,255,.10);
+  box-shadow:0 10px 28px rgba(37,99,235,.26),0 0 22px rgba(139,92,246,.16);
+}
+.cal-btn:hover,
+body.team-mode .cal-btn:hover{
+  background:linear-gradient(135deg,#8b5cf6,#3b82f6 58%,#06b6d4);
+  border-color:rgba(255,255,255,.22);
+  box-shadow:0 14px 36px rgba(37,99,235,.34),0 0 34px rgba(56,189,248,.20);
+}
+.empty{color:#94a3b8}.toast{background:linear-gradient(135deg,#8b5cf6,#2563eb,#06b6d4);color:#fff;box-shadow:0 16px 42px rgba(37,99,235,.35)}
+footer{border-top-color:rgba(148,163,184,.14);color:#7f8fa8}
+@media(max-width:620px){
+  .controls{border-radius:18px;padding:14px}
+  .stat{border-radius:14px}
+  .mcard{border-radius:16px}
+}
+
 </style>
 </head>
 <body>
@@ -107,7 +322,7 @@ footer{border-top:1px solid var(--border);margin-top:40px;padding-top:20px;font-
 </div>
 
 <div id="list"></div>
-<footer>Made By @hars</footer>
+<footer>Made with ❤️ by <a href="https://www.instagram.com/harshkashyap.ai" target="_blank" rel="noopener">@harshkashyap.ai</a></footer>
 </div>
 <div class="toast" id="toast"></div>
 
