@@ -74,7 +74,7 @@ body.team-mode .toggle.on{background:var(--line);border-color:var(--team-accent)
 .date-hdr{font-family:'JetBrains Mono',monospace;font-size:10px;color:var(--accent-2);letter-spacing:.12em;text-transform:uppercase;padding:14px 0 6px;border-top:1px solid var(--border);margin-top:4px}body.team-mode .date-hdr{color:var(--text-muted)}
 .mcard{background:var(--bg-card);border:1px solid var(--border);border-radius:10px;padding:14px 16px;margin-bottom:7px;display:grid;grid-template-columns:1fr auto;gap:6px 14px;align-items:center;position:relative;overflow:visible;transition:border-color .18s,background .4s,opacity .3s}.mcard:hover{border-color:var(--accent-2)}body.team-mode .mcard:hover{border-color:var(--team-accent)}.mcard.completed{opacity:.62}.mcard.completed:hover{opacity:.85}.mcard.live{border-color:rgba(255,99,71,.55)}
 .mteams{font-size:14px;font-weight:600;color:var(--text-strong)}.mteams .vs{font-weight:300;color:var(--text-muted);margin:0 4px;font-size:12px}.mmeta{font-size:11px;color:var(--text-muted);margin-top:3px;display:flex;align-items:center;gap:8px;flex-wrap:wrap}.badge{font-family:'JetBrains Mono',monospace;font-size:9px;background:var(--line);color:var(--accent);padding:2px 6px;border-radius:3px;letter-spacing:.06em}body.team-mode .badge{color:var(--team-accent)}.badge.knockout{background:rgba(201,168,76,.12);color:var(--accent);border:1px solid var(--accent-2)}body.team-mode .badge.knockout{background:rgba(0,0,0,.04);color:var(--team-accent);border-color:var(--team-accent)}
-.mright{display:flex;align-items:center;gap:10px}.mtime-wrap{text-align:right}.mtime{font-family:'Bebas Neue',sans-serif;font-size:24px;color:var(--text-strong);line-height:1}.mtime.ft{color:var(--text-muted);font-size:20px;letter-spacing:.04em}.mtime.live-txt{color:#e45745;font-size:20px;letter-spacing:.04em}.mdate-local{font-family:'JetBrains Mono',monospace;font-size:9px;color:var(--text-muted);margin-top:2px}.official-et{font-family:'JetBrains Mono',monospace;font-size:9px;color:var(--text-muted);margin-top:2px;opacity:.75}
+.mright{display:flex;align-items:center;gap:10px}.mtime-wrap{text-align:right}.mtime{font-family:'Bebas Neue',sans-serif;font-size:24px;color:var(--text-strong);line-height:1}.mtime.ft{color:var(--text-muted);font-size:20px;letter-spacing:.04em}.mtime.live-txt{color:#e45745;font-size:20px;letter-spacing:.04em}.mdate-local{font-family:'JetBrains Mono',monospace;font-size:9px;color:var(--text-muted);margin-top:2px}
 .completed-pill,.live-pill{display:flex;align-items:center;gap:5px;padding:7px 10px;border-radius:6px;font-size:10px;font-weight:600;letter-spacing:.05em;text-transform:uppercase;font-family:'JetBrains Mono',monospace;white-space:nowrap}.completed-pill{background:rgba(34,139,87,.12);border:1px solid rgba(34,139,87,.5);color:#2e9e60}.live-pill{background:rgba(228,87,69,.12);border:1px solid rgba(228,87,69,.5);color:#e45745}body.team-mode .completed-pill{background:rgba(34,139,87,.08);color:#1b7a45}
 .cal-wrap{position:relative;z-index:50}.cal-btn{background:var(--line);border:1px solid var(--border);border-radius:6px;width:36px;height:36px;display:flex;align-items:center;justify-content:center;cursor:pointer;font-size:16px;color:var(--text);transition:border-color .15s,background .15s;flex-shrink:0}.cal-btn:hover{border-color:var(--accent);background:#1a3d1f}body.team-mode .cal-btn:hover{border-color:var(--team-accent);background:#f5f5ef}
 .empty{text-align:center;padding:60px 20px;color:var(--text-muted);font-size:14px}.empty-icon{font-size:44px;margin-bottom:10px;display:block}.toast{position:fixed;bottom:24px;left:50%;transform:translateX(-50%) translateY(80px);background:var(--accent);color:#0a1a0d;padding:10px 22px;border-radius:50px;font-size:13px;font-weight:600;letter-spacing:.04em;transition:transform .3s,background .3s;pointer-events:none;z-index:999}body.team-mode .toast{background:var(--team-accent);color:#fff}.toast.show{transform:translateX(-50%) translateY(0)}
@@ -295,7 +295,7 @@ body.team-mode .badge.knockout{
   text-shadow:0 0 18px rgba(34,211,238,.32);
 }
 .mtime.ft{color:#7d8ba3;text-shadow:none}.mtime.live-txt{color:#fb7185;text-shadow:0 0 16px rgba(251,113,133,.28)}
-.mdate-local,.official-et{color:#8a9ab5}.completed-pill{background:rgba(34,197,94,.10);border-color:rgba(34,197,94,.34);color:#86efac}.live-pill{background:rgba(251,113,133,.10);border-color:rgba(251,113,133,.42);color:#fb7185}
+.mdate-local{color:#8a9ab5}.completed-pill{background:rgba(34,197,94,.10);border-color:rgba(34,197,94,.34);color:#86efac}.live-pill{background:rgba(251,113,133,.10);border-color:rgba(251,113,133,.42);color:#fb7185}
 .cal-btn{
   width:40px;height:40px;border-radius:14px;
   background:linear-gradient(135deg,#7c3aed,#2563eb 58%,#0891b2);
@@ -330,6 +330,7 @@ body.team-mode{
   --text-strong:#0a0a0a;
   --header-border:#e6e6df;
   background:
+    linear-gradient(90deg, rgba(250,250,247,.82) 0%, rgba(250,250,247,.58) 48%, rgba(250,250,247,.24) 100%),
     radial-gradient(ellipse 800px 600px at 15% 0%, var(--team-c1) 0%, transparent 65%),
     radial-gradient(ellipse 700px 500px at 85% 30%, var(--team-c2) 0%, transparent 60%),
     radial-gradient(ellipse 600px 800px at 50% 100%, var(--team-c1) 0%, transparent 55%),
@@ -423,7 +424,6 @@ body.team-mode .mteams{color:var(--text-strong) !important;}
 body.team-mode .mteams .vs,
 body.team-mode .mmeta,
 body.team-mode .mdate-local,
-body.team-mode .official-et{color:var(--text-muted) !important;}
 body.team-mode .badge{
   background:var(--line) !important;
   color:var(--team-accent) !important;
@@ -455,6 +455,19 @@ body.team-mode .empty{color:var(--text-muted) !important;}
 body.team-mode .toast{background:var(--team-accent) !important;color:#ffffff !important;box-shadow:none !important;}
 body.team-mode footer{border-top-color:var(--border) !important;color:var(--text-muted) !important;}
 body.team-mode footer a{color:var(--team-accent) !important;}
+
+
+/* Team mode contrast safeguards: keep the flag-gradient feel, but make titles/accents readable on bright flags. */
+body.team-mode .eyebrow,
+body.team-mode h1 em{
+  text-shadow:0 1px 0 rgba(255,255,255,.90),0 0 22px rgba(255,255,255,.78) !important;
+}
+body.team-mode .stat-n,
+body.team-mode .badge,
+body.team-mode .badge.knockout,
+body.team-mode footer a{
+  text-shadow:0 1px 0 rgba(255,255,255,.75) !important;
+}
 
 </style>
 </head>
@@ -1709,11 +1722,11 @@ const TIMEZONES = [
 ];
 
 const FLAGS = {
-  'Mexico':'🇲🇽','South Africa':'🇿🇦','South Korea':'🇰🇷','Czechia':'🇨🇿','Canada':'🇨🇦','Bosnia and Herzegovina':'🇧🇦','Qatar':'🇶🇦','Switzerland':'🇨🇭','Brazil':'🇧🇷','Morocco':'🇲🇦','Haiti':'🇭🇹','Scotland':'🏴','USA':'🇺🇸','Paraguay':'🇵🇾','Australia':'🇦🇺','Türkiye':'🇹🇷','Germany':'🇩🇪','Curaçao':'🇨🇼','Ivory Coast':'🇨🇮','Ecuador':'🇪🇨','Netherlands':'🇳🇱','Japan':'🇯🇵','Sweden':'🇸🇪','Tunisia':'🇹🇳','Belgium':'🇧🇪','Egypt':'🇪🇬','Iran':'🇮🇷','New Zealand':'🇳🇿','Spain':'🇪🇸','Cape Verde':'🇨🇻','Saudi Arabia':'🇸🇦','Uruguay':'🇺🇾','France':'🇫🇷','Senegal':'🇸🇳','Iraq':'🇮🇶','Norway':'🇳🇴','Argentina':'🇦🇷','Algeria':'🇩🇿','Austria':'🇦🇹','Jordan':'🇯🇴','Portugal':'🇵🇹','DR Congo':'🇨🇩','Uzbekistan':'🇺🇿','Colombia':'🇨🇴','England':'🏴','Croatia':'🇭🇷','Ghana':'🇬🇭','Panama':'🇵🇦','TBD':'🏳'
+  'Mexico':'🇲🇽','South Africa':'🇿🇦','South Korea':'🇰🇷','Czechia':'🇨🇿','Canada':'🇨🇦','Bosnia and Herzegovina':'🇧🇦','Qatar':'🇶🇦','Switzerland':'🇨🇭','Brazil':'🇧🇷','Morocco':'🇲🇦','Haiti':'🇭🇹','Scotland':'\uD83C\uDFF4\uDB40\uDC67\uDB40\uDC62\uDB40\uDC73\uDB40\uDC63\uDB40\uDC74\uDB40\uDC7F','USA':'🇺🇸','Paraguay':'🇵🇾','Australia':'🇦🇺','Türkiye':'🇹🇷','Germany':'🇩🇪','Curaçao':'🇨🇼','Ivory Coast':'🇨🇮','Ecuador':'🇪🇨','Netherlands':'🇳🇱','Japan':'🇯🇵','Sweden':'🇸🇪','Tunisia':'🇹🇳','Belgium':'🇧🇪','Egypt':'🇪🇬','Iran':'🇮🇷','New Zealand':'🇳🇿','Spain':'🇪🇸','Cape Verde':'🇨🇻','Saudi Arabia':'🇸🇦','Uruguay':'🇺🇾','France':'🇫🇷','Senegal':'🇸🇳','Iraq':'🇮🇶','Norway':'🇳🇴','Argentina':'🇦🇷','Algeria':'🇩🇿','Austria':'🇦🇹','Jordan':'🇯🇴','Portugal':'🇵🇹','DR Congo':'🇨🇩','Uzbekistan':'🇺🇿','Colombia':'🇨🇴','England':'\uD83C\uDFF4\uDB40\uDC67\uDB40\uDC62\uDB40\uDC65\uDB40\uDC6E\uDB40\uDC67\uDB40\uDC7F','Croatia':'🇭🇷','Ghana':'🇬🇭','Panama':'🇵🇦','TBD':'🏳'
 };
 
 const TEAM_COLORS = {
-  'Argentina':{c1:'rgba(117,170,219,.55)',c2:'rgba(255,255,255,0)',accent:'#1565a8'},'Brazil':{c1:'rgba(255,223,0,.45)',c2:'rgba(0,156,59,.40)',accent:'#009c3b'},'Mexico':{c1:'rgba(0,104,71,.45)',c2:'rgba(206,17,38,.35)',accent:'#006847'},'South Africa':{c1:'rgba(0,122,77,.45)',c2:'rgba(255,184,28,.40)',accent:'#007a4d'},'South Korea':{c1:'rgba(205,46,58,.40)',c2:'rgba(0,71,160,.40)',accent:'#cd2e3a'},'Czechia':{c1:'rgba(17,69,126,.50)',c2:'rgba(215,20,26,.35)',accent:'#11457e'},'Canada':{c1:'rgba(255,0,0,.40)',c2:'rgba(255,255,255,0)',accent:'#d52b1e'},'Bosnia and Herzegovina':{c1:'rgba(0,46,116,.50)',c2:'rgba(252,209,22,.40)',accent:'#002e74'},'Qatar':{c1:'rgba(140,21,53,.50)',c2:'rgba(255,255,255,0)',accent:'#8c1535'},'Switzerland':{c1:'rgba(218,41,28,.45)',c2:'rgba(255,255,255,0)',accent:'#da291c'},'Morocco':{c1:'rgba(193,39,45,.45)',c2:'rgba(0,98,51,.40)',accent:'#c1272d'},'Haiti':{c1:'rgba(0,32,91,.50)',c2:'rgba(212,17,33,.40)',accent:'#00209f'},'Scotland':{c1:'rgba(0,94,184,.50)',c2:'rgba(255,255,255,0)',accent:'#005eb8'},'USA':{c1:'rgba(60,59,110,.50)',c2:'rgba(178,34,52,.40)',accent:'#3c3b6e'},'Paraguay':{c1:'rgba(214,28,28,.40)',c2:'rgba(0,56,147,.40)',accent:'#0038a8'},'Australia':{c1:'rgba(0,32,84,.55)',c2:'rgba(229,32,49,.35)',accent:'#012169'},'Türkiye':{c1:'rgba(227,10,23,.45)',c2:'rgba(255,255,255,0)',accent:'#e30a17'},'Germany':{c1:'rgba(0,0,0,.50)',c2:'rgba(255,206,0,.40)',accent:'#1a1a1a'},'Curaçao':{c1:'rgba(0,40,104,.50)',c2:'rgba(247,209,23,.40)',accent:'#002868'},'Ivory Coast':{c1:'rgba(243,127,32,.45)',c2:'rgba(0,154,73,.40)',accent:'#009a49'},'Ecuador':{c1:'rgba(255,221,0,.40)',c2:'rgba(0,52,148,.45)',accent:'#003494'},'Netherlands':{c1:'rgba(255,103,31,.50)',c2:'rgba(0,40,104,.40)',accent:'#ff671f'},'Japan':{c1:'rgba(188,0,45,.45)',c2:'rgba(255,255,255,0)',accent:'#bc002d'},'Sweden':{c1:'rgba(0,106,167,.50)',c2:'rgba(254,204,0,.40)',accent:'#006aa7'},'Tunisia':{c1:'rgba(225,0,0,.45)',c2:'rgba(255,255,255,0)',accent:'#e10000'},'Belgium':{c1:'rgba(255,233,68,.40)',c2:'rgba(239,51,64,.40)',accent:'#ef3340'},'Egypt':{c1:'rgba(206,17,38,.40)',c2:'rgba(0,0,0,.45)',accent:'#ce1126'},'Iran':{c1:'rgba(35,159,64,.45)',c2:'rgba(218,18,26,.40)',accent:'#239f40'},'New Zealand':{c1:'rgba(0,33,71,.55)',c2:'rgba(199,0,57,.40)',accent:'#012169'},'Spain':{c1:'rgba(170,21,27,.45)',c2:'rgba(241,196,15,.40)',accent:'#aa151b'},'Cape Verde':{c1:'rgba(0,52,148,.50)',c2:'rgba(247,209,23,.40)',accent:'#003893'},'Saudi Arabia':{c1:'rgba(0,107,63,.50)',c2:'rgba(255,255,255,0)',accent:'#006b3f'},'Uruguay':{c1:'rgba(117,170,219,.50)',c2:'rgba(255,255,255,0)',accent:'#75aadb'},'France':{c1:'rgba(0,85,164,.50)',c2:'rgba(239,65,53,.40)',accent:'#0055a4'},'Senegal':{c1:'rgba(0,135,68,.45)',c2:'rgba(253,200,47,.40)',accent:'#008844'},'Iraq':{c1:'rgba(206,17,38,.40)',c2:'rgba(0,122,61,.40)',accent:'#ce1126'},'Norway':{c1:'rgba(186,12,47,.45)',c2:'rgba(0,32,91,.45)',accent:'#ba0c2f'},'Algeria':{c1:'rgba(0,107,63,.50)',c2:'rgba(255,255,255,0)',accent:'#006b3f'},'Austria':{c1:'rgba(237,41,57,.45)',c2:'rgba(255,255,255,0)',accent:'#ed2939'},'Jordan':{c1:'rgba(0,122,61,.45)',c2:'rgba(206,17,38,.40)',accent:'#007a3d'},'Portugal':{c1:'rgba(0,98,49,.50)',c2:'rgba(255,0,0,.40)',accent:'#006231'},'DR Congo':{c1:'rgba(0,123,196,.50)',c2:'rgba(247,209,23,.40)',accent:'#007bc4'},'Uzbekistan':{c1:'rgba(0,153,205,.45)',c2:'rgba(30,181,58,.40)',accent:'#0099cd'},'Colombia':{c1:'rgba(252,221,0,.40)',c2:'rgba(206,17,38,.40)',accent:'#fcdd00'},'England':{c1:'rgba(206,17,38,.40)',c2:'rgba(255,255,255,0)',accent:'#ce1126'},'Croatia':{c1:'rgba(206,17,38,.45)',c2:'rgba(255,255,255,0)',accent:'#ce1126'},'Ghana':{c1:'rgba(0,107,63,.45)',c2:'rgba(252,209,22,.40)',accent:'#006b3f'},'Panama':{c1:'rgba(0,32,91,.50)',c2:'rgba(206,17,38,.40)',accent:'#00205b'}
+  'Argentina':{c1:'rgba(117,170,219,.55)',c2:'rgba(255,255,255,0)',accent:'#1565a8'},'Brazil':{c1:'rgba(255,223,0,.45)',c2:'rgba(0,156,59,.40)',accent:'#009c3b'},'Mexico':{c1:'rgba(0,104,71,.45)',c2:'rgba(206,17,38,.35)',accent:'#006847'},'South Africa':{c1:'rgba(0,122,77,.45)',c2:'rgba(255,184,28,.40)',accent:'#007a4d'},'South Korea':{c1:'rgba(205,46,58,.40)',c2:'rgba(0,71,160,.40)',accent:'#cd2e3a'},'Czechia':{c1:'rgba(17,69,126,.50)',c2:'rgba(215,20,26,.35)',accent:'#11457e'},'Canada':{c1:'rgba(255,0,0,.40)',c2:'rgba(255,255,255,0)',accent:'#d52b1e'},'Bosnia and Herzegovina':{c1:'rgba(0,46,116,.50)',c2:'rgba(252,209,22,.40)',accent:'#002e74'},'Qatar':{c1:'rgba(140,21,53,.50)',c2:'rgba(255,255,255,0)',accent:'#8c1535'},'Switzerland':{c1:'rgba(218,41,28,.45)',c2:'rgba(255,255,255,0)',accent:'#da291c'},'Morocco':{c1:'rgba(193,39,45,.45)',c2:'rgba(0,98,51,.40)',accent:'#c1272d'},'Haiti':{c1:'rgba(0,32,91,.50)',c2:'rgba(212,17,33,.40)',accent:'#00209f'},'Scotland':{c1:'rgba(0,94,184,.50)',c2:'rgba(255,255,255,0)',accent:'#005eb8'},'USA':{c1:'rgba(60,59,110,.50)',c2:'rgba(178,34,52,.40)',accent:'#3c3b6e'},'Paraguay':{c1:'rgba(214,28,28,.40)',c2:'rgba(0,56,147,.40)',accent:'#0038a8'},'Australia':{c1:'rgba(0,32,84,.55)',c2:'rgba(229,32,49,.35)',accent:'#012169'},'Türkiye':{c1:'rgba(227,10,23,.45)',c2:'rgba(255,255,255,0)',accent:'#e30a17'},'Germany':{c1:'rgba(0,0,0,.22)',c2:'rgba(255,206,0,.30)',accent:'#1a1a1a'},'Curaçao':{c1:'rgba(0,40,104,.50)',c2:'rgba(247,209,23,.40)',accent:'#002868'},'Ivory Coast':{c1:'rgba(243,127,32,.45)',c2:'rgba(0,154,73,.40)',accent:'#009a49'},'Ecuador':{c1:'rgba(255,221,0,.40)',c2:'rgba(0,52,148,.45)',accent:'#003494'},'Netherlands':{c1:'rgba(255,103,31,.50)',c2:'rgba(0,40,104,.40)',accent:'#ff671f'},'Japan':{c1:'rgba(188,0,45,.45)',c2:'rgba(255,255,255,0)',accent:'#bc002d'},'Sweden':{c1:'rgba(0,106,167,.50)',c2:'rgba(254,204,0,.40)',accent:'#006aa7'},'Tunisia':{c1:'rgba(225,0,0,.45)',c2:'rgba(255,255,255,0)',accent:'#e10000'},'Belgium':{c1:'rgba(255,233,68,.40)',c2:'rgba(239,51,64,.40)',accent:'#ef3340'},'Egypt':{c1:'rgba(206,17,38,.40)',c2:'rgba(0,0,0,.45)',accent:'#ce1126'},'Iran':{c1:'rgba(35,159,64,.45)',c2:'rgba(218,18,26,.40)',accent:'#239f40'},'New Zealand':{c1:'rgba(0,33,71,.55)',c2:'rgba(199,0,57,.40)',accent:'#012169'},'Spain':{c1:'rgba(170,21,27,.45)',c2:'rgba(241,196,15,.40)',accent:'#aa151b'},'Cape Verde':{c1:'rgba(0,52,148,.50)',c2:'rgba(247,209,23,.40)',accent:'#003893'},'Saudi Arabia':{c1:'rgba(0,107,63,.50)',c2:'rgba(255,255,255,0)',accent:'#006b3f'},'Uruguay':{c1:'rgba(117,170,219,.36)',c2:'rgba(255,255,255,0)',accent:'#1565a8'},'France':{c1:'rgba(0,85,164,.50)',c2:'rgba(239,65,53,.40)',accent:'#0055a4'},'Senegal':{c1:'rgba(0,135,68,.45)',c2:'rgba(253,200,47,.40)',accent:'#008844'},'Iraq':{c1:'rgba(206,17,38,.40)',c2:'rgba(0,122,61,.40)',accent:'#ce1126'},'Norway':{c1:'rgba(186,12,47,.45)',c2:'rgba(0,32,91,.45)',accent:'#ba0c2f'},'Algeria':{c1:'rgba(0,107,63,.50)',c2:'rgba(255,255,255,0)',accent:'#006b3f'},'Austria':{c1:'rgba(237,41,57,.45)',c2:'rgba(255,255,255,0)',accent:'#ed2939'},'Jordan':{c1:'rgba(0,122,61,.45)',c2:'rgba(206,17,38,.40)',accent:'#007a3d'},'Portugal':{c1:'rgba(0,98,49,.50)',c2:'rgba(255,0,0,.40)',accent:'#006231'},'DR Congo':{c1:'rgba(0,123,196,.50)',c2:'rgba(247,209,23,.40)',accent:'#007bc4'},'Uzbekistan':{c1:'rgba(0,153,205,.45)',c2:'rgba(30,181,58,.40)',accent:'#0099cd'},'Colombia':{c1:'rgba(252,221,0,.24)',c2:'rgba(206,17,38,.28)',accent:'#003893'},'England':{c1:'rgba(206,17,38,.40)',c2:'rgba(255,255,255,0)',accent:'#ce1126'},'Croatia':{c1:'rgba(206,17,38,.45)',c2:'rgba(255,255,255,0)',accent:'#ce1126'},'Ghana':{c1:'rgba(0,107,63,.45)',c2:'rgba(252,209,22,.40)',accent:'#006b3f'},'Panama':{c1:'rgba(0,32,91,.50)',c2:'rgba(206,17,38,.40)',accent:'#00205b'}
 };
 
 const STAGE_LABELS={'Group':'GRP','R32':'R32','R16':'R16','QF':'QF','SF':'SF','3rd':'3RD','Final':'FINAL'};
@@ -1840,7 +1853,6 @@ function render(){
     const homeFlag=FLAGS[m.home]||'🏳', awayFlag=FLAGS[m.away]||'🏳';
     const isKnockout=m.stage!=='Group';
     const stageLabel=isKnockout?STAGE_LABELS[m.stage]:`GRP ${m.g}`;
-    const matchTag=` · M${m.id}`;
     const isCompleted=m.status==='completed', isLive=m.status==='live';
     const card=document.createElement('div');
     card.className='mcard'+(isCompleted?' completed':'')+(isLive?' live':'');
@@ -1849,9 +1861,9 @@ function render(){
     card.innerHTML=`
       <div>
         <div class="mteams">${homeFlag} ${m.home} <span class="vs">vs</span> ${awayFlag} ${m.away}</div>
-        <div class="mmeta"><span class="badge${isKnockout?' knockout':''}">${stageLabel}</span><span>📍 ${m.venue}${matchTag}</span></div>
+        <div class="mmeta"><span class="badge${isKnockout?' knockout':''}">${stageLabel}</span><span>📍 ${m.venue}</span></div>
       </div>
-      <div class="mright"><div class="mtime-wrap"><div class="mtime${timeClass}">${timeText}</div><div class="mdate-local">${m.conv.date}</div><div class="official-et">ET: ${m.officialEtDate} ${m.officialEt}</div></div></div>`;
+      <div class="mright"><div class="mtime-wrap"><div class="mtime${timeClass}">${timeText}</div><div class="mdate-local">${m.conv.date}</div></div></div>`;
     const right=card.querySelector('.mright');
     if(isCompleted)right.appendChild(statusPill('completed')); else if(isLive)right.appendChild(statusPill('live')); else right.appendChild(buildCalBtn({...m,raw:m.conv.raw}));
     list.appendChild(card);
